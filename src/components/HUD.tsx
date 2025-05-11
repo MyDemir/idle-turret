@@ -1,17 +1,15 @@
-import React from "react";
+type HudProps = {
+  health: number
+  gold: number
+  wave: number
+}
 
-export default function HUD() {
+export default function Hud({ health, gold, wave }: HudProps) {
   return (
-    <div className="absolute top-0 left-0 w-full bg-black bg-opacity-60 text-white p-4 flex justify-between text-sm sm:text-base">
-      <div className="space-x-4">
-        <span>Altın: 100</span>
-        <span>Enerji: 75</span>
-        <span>Skor: 0</span>
-      </div>
-      <div className="space-x-4">
-        <span>Dalga: 1 / 10</span>
-        <button className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">Başlat</button>
-      </div>
+    <div className="absolute top-4 left-4 bg-black/60 text-white p-4 rounded-xl shadow-lg">
+      <div>Can: {health}</div>
+      <div>Altın: {gold}</div>
+      <div>Dalga: {wave}</div>
     </div>
-  );
+  )
 }
