@@ -26,7 +26,7 @@ body {
   align-items: center;
   height: 10%; /* Yükseklik sabitlendi */
   border-bottom: 2px solid #444;
-  box-sizing: border-box; /* Padding dahil genişlik hesapla */
+  box-sizing: border-box;
 }
 
 .hud-item {
@@ -40,6 +40,19 @@ body {
   color: #ffcc00;
 }
 
+/* Mobil için HUD */
+@media (max-width: 768px) {
+  .hud {
+    flex-direction: column;
+    height: auto; /* Yüksekliği içeriğe göre ayarla */
+    padding: 0.5rem;
+  }
+
+  .hud-item {
+    justify-content: center;
+  }
+}
+
 /* Düşman Alanı */
 .enemy-zone {
   flex: 1;
@@ -48,19 +61,19 @@ body {
   align-items: center;
   background-color: #202040;
   border-bottom: 2px solid #555;
-  box-sizing: border-box; /* Padding dahil genişlik hesapla */
+  box-sizing: border-box;
 }
 
 /* Kule Alanı */
 .turret-zone {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* Her sütun eşit genişlikte */
-  grid-template-rows: repeat(3, 1fr);   /* Her satır eşit yükseklikte */
-  gap: 5px;
+  grid-template-columns: repeat(7, 1fr); /* İlk sıra 7 sütun */
+  grid-template-rows: repeat(3, 1fr);   /* 3 satır */
+  gap: 8px;
   background-color: #111122;
-  height: 20%; /* Sabit yükseklik */
-  padding: 0; /* Ekstra boşluk kaldırıldı */
-  box-sizing: border-box; /* Padding dahil genişlik hesapla */
+  height: 30%; /* Sabit yükseklik */
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .turret-cell {
@@ -72,21 +85,38 @@ body {
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
-  box-sizing: border-box; /* Padding dahil genişlik hesapla */
+  box-sizing: border-box;
+}
+
+/* İlk 7 Kutu: Ön Planda */
+.front-row {
+  background-color: #3b3b70; /* Daha parlak renk */
+  border: 2px solid #fff; /* Daha belirgin kenarlık */
+  z-index: 1;
+}
+
+/* Geriye Kalan 14 Kutu: Arka Planda */
+.back-row {
+  opacity: 0.6; /* Daha az dikkat çeksin */
+  z-index: 0;
 }
 
 .turret-cell:hover {
-  background-color: #3b3b70;
+  background-color: #5b5b90;
 }
 
 /* Responsive Düzenleme */
 @media (max-width: 768px) {
-  .hud {
-    flex-direction: column;
+  .turret-zone {
+    gap: 4px; /* Daha küçük boşluklar */
   }
 
-  .turret-zone {
-    gap: 3px; /* Daha küçük boşluklar */
+  .front-row {
+    background-color: #5050a0;
+  }
+
+  .back-row {
+    opacity: 0.7;
   }
 
   .turret-cell {
