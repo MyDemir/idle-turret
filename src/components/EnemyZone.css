@@ -1,43 +1,34 @@
 .enemy-zone {
   position: relative;
-  width: 420px; /* 7 sütun * 60px */
-  height: 180px; /* 3 satır * 60px */
+  width: 100%; /* Tüm genişlik */
+  height: 400px; /* Düşman hareket alanı yüksekliği */
+  overflow: hidden; /* Alan dışına çıkan düşmanlar gizlenecek */
+  background-color: #111;
   border: 2px solid #333;
-  display: grid;
-  grid-template-columns: repeat(7, 60px);
-  grid-template-rows: repeat(3, 60px);
-  background-color: #222;
 }
 
 .enemy {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: red;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   transition: transform 0.5s linear; /* Hareket animasyonu */
 }
 
-.enemy.alive {
-  background-color: red;
-}
-
-.enemy.dead {
-  background-color: gray;
-}
-
 .enemy-health {
   position: absolute;
-  top: -15px;
-  background-color: black;
-  color: white;
+  top: -10px;
+  font-size: 10px;
+  background: black;
   padding: 2px 5px;
   border-radius: 3px;
-  font-size: 10px;
+  color: white;
+  text-align: center;
 }
