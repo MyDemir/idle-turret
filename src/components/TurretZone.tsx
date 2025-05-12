@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const TurretZone = () => {
+const TurretZone = ({ enemies, setEnemies }: { enemies: any[]; setEnemies: (enemies: any[]) => void }) => {
   const columns = 7;
   const rows = 3;
+
+  const attackEnemies = () => {
+    setEnemies((prevEnemies) =>
+      prevEnemies.map((enemy) => {
+        if (enemy.status === 'alive') {
+          return { ...enemy, health: enemy.health - 10 }; // Kule düşmana hasar verir
+        }
+        return enemy;
+      })
+    );
+  };
+
+  useEffect(() => {
+    const attackInterval = setInterval(attackEnemies, 1000); // Her saniyede bir saldırı
+    return () => clearInterval(attackInterval);
+  }, []);
 
   return (
     <div className={`grid grid-cols-${columns} gap-2`}>
