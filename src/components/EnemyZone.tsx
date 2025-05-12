@@ -57,8 +57,8 @@ const EnemyZone = ({ updateWave, updateHealth }: { updateWave: (wave: number) =>
           const dy = enemy.target.y - enemy.position.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 5) {
-            updateHealth((prevHealth) => prevHealth - 10); // Can azaltma
+          if (distance < 5 && enemy.status !== 'dead') {
+            updateHealth((prevHealth) => Math.max(prevHealth - 10, 0)); // Can azaltma
             return { ...enemy, status: 'dead' };
           }
 
