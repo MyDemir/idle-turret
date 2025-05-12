@@ -1,1 +1,41 @@
 
+.turret-zone {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(50px, 1fr)); /* Dinamik sütun genişliği */
+  gap: 5px;
+  background-color: #111122;
+  height: 25%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.turret-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #2a2a50;
+  border: 2px dashed #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.turret-cell:hover {
+  background-color: #5b5b90;
+}
+
+.front-row {
+  background-color: #3b3b70;
+  border: 2px solid #fff;
+}
+
+.back-row {
+  background-color: #1a1a30;
+  border: 1px dashed #444;
+  transform: scale(0.8);
+  opacity: 0.6;
+}
