@@ -51,13 +51,14 @@ body {
 /* Kule Alanı */
 .turret-zone {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Dinamik sütun genişliği */
+  grid-template-columns: repeat(7, minmax(50px, 1fr)); /* Dinamik sütun genişliği */
   gap: 5px;
   background-color: #111122;
   height: 25%;
   padding: 0 10px;
-  box-sizing: border-box;
-  justify-items: center; /* Ögeleri ortala */
+  justify-content: center; /* Ögeleri ortala */
+  max-width: 1200px; /* Büyük ekranlarda genişliği sınırlı tut */
+  margin: 0 auto; /* Ortala */
 }
 
 .turret-cell {
@@ -92,6 +93,13 @@ body {
 }
 
 /* Responsive Düzenleme */
+@media (min-width: 1200px) {
+  .turret-zone {
+    grid-template-columns: repeat(7, 1fr); /* Büyük ekranlar için sabit sütun genişliği */
+    gap: 10px; /* Daha fazla boşluk */
+  }
+}
+
 @media (max-width: 768px) {
   .hud {
     flex-direction: column;
@@ -107,4 +115,4 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Daha küçük sütunlar */
     gap: 3px;
   }
-}
+    }
