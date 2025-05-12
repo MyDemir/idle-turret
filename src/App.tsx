@@ -1,4 +1,5 @@
 import './App.css';
+import EnemyZone from './components/EnemyZone'; // EnemyZone bileşenini ekliyoruz
 
 const App = () => {
   const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀']; // İlk 7 için savaşçı emojiler
@@ -21,9 +22,7 @@ const App = () => {
       </div>
 
       {/* Düşman Alanı */}
-      <div className="enemy-zone">
-        <p>Düşmanlar buraya gelecek</p>
-      </div>
+      <EnemyZone /> {/* Dinamik düşman alanı burada çağrılıyor */}
 
       {/* Kule Alanı */}
       <div className="turret-zone">
