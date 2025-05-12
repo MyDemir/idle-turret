@@ -1,6 +1,7 @@
 import './App.css';
 
 const App = () => {
+  const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀']; // İlk 7 için savaşçı emojiler
   return (
     <div className="app">
       {/* HUD Alanı */}
@@ -26,13 +27,13 @@ const App = () => {
 
       {/* Kule Alanı */}
       <div className="turret-zone">
-        {Array.from({ length: 21 }).map((_, index) => (
-          <div
-            key={index}
-            className={`turret-cell ${index < 7 ? 'front-row' : 'back-row'}`}
-          >
-            {/* Kule veya boş alan */}
+        {warriors.map((warrior, index) => (
+          <div key={index} className="turret-cell front-row">
+            <span className="warrior">{warrior}</span>
           </div>
+        ))}
+        {Array.from({ length: 14 }).map((_, index) => (
+          <div key={index} className="turret-cell back-row"></div>
         ))}
       </div>
     </div>
