@@ -4,12 +4,16 @@ body {
   font-family: 'Orbitron', sans-serif;
   background: radial-gradient(circle, #1a1a2e, #0f0f1c);
   color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* Scroll'u devre dışı bırak */
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 
 /* HUD Alanı */
@@ -20,40 +24,61 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #444;
-  color: #f8f8f8;
   font-size: 1.2rem;
 }
 
-/* Oyun Alanı */
-.game-area {
-  flex: 1;
-  display: grid;
-  grid-template-rows: 3fr 2fr;
-  grid-gap: 1rem;
-  padding: 1rem;
-  background: repeating-linear-gradient(
-    45deg,
-    #0f0f1c,
-    #0f0f1c 10px,
-    #111122 10px,
-    #111122 20px
-  );
-}
-
-/* Turret ve Enemy Alanları */
-.turret-zone,
+/* Düşman Alanı */
 .enemy-zone {
-  border: 2px dashed #555;
-  padding: 1rem;
-  background-color: #202040;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.2s ease-in-out;
+  background-color: #202040;
+  border-bottom: 2px solid #555;
 }
 
-.turret-zone:hover,
-.enemy-zone:hover {
+/* Kule Alanı */
+.turret-zone {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 sütun */
+  grid-template-rows: repeat(3, 1fr); /* 3 satır */
+  gap: 8px;
+  padding: 1rem;
+  background-color: #111122;
+  position: fixed;
+  bottom: 0; /* Alt kısma sabitler */
+  width: 100%; /* Ekran genişliğini kaplar */
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Kule Hücreleri */
+.turret-cell {
+  width: 100%;
+  aspect-ratio: 1; /* Kare hücreler */
   background-color: #2a2a50;
-  transform: scale(1.02);
+  border: 2px dashed #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.turret-cell:hover {
+  background-color: #3b3b70;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .hud {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .turret-zone {
+    gap: 4px;
+  }
+
+  .turret-cell {
+    border: 1px dashed #555;
+  }
 }
