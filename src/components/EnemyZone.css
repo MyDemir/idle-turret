@@ -1,7 +1,7 @@
 .enemy-zone {
   position: relative;
-  width: 100%; /* Tüm genişlik */
-  height: 400px; /* Düşman hareket alanı yüksekliği */
+  width: 350px; /* Grid genişliği (7 sütun * 50px) */
+  height: 500px; /* Grid yüksekliği (10 satır * 50px) */
   overflow: hidden; /* Alan dışına çıkan düşmanlar gizlenecek */
   background-color: #111;
   border: 2px solid #333;
@@ -31,14 +31,4 @@
   border-radius: 3px;
   color: white;
   text-align: center;
-}
-
-.next-wave-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: blue;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
