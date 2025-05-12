@@ -33,8 +33,9 @@ const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWa
           x: Math.random() * turretZoneWidth,
           y: window.innerHeight - turretZoneHeight,
         },
-        color: enemyType.color,
-        status: 'alive',
+        color: enemyType.color, // Eklenen özellik
+        speed: enemyType.speed, // Eklenen özellik
+        status: 'alive', // Eklenen özellik
       };
     });
 
