@@ -1,6 +1,7 @@
 import './App.css';
 import HUD from './components/HUD';
 import TurretZone from './components/TurretZone';
+import EnemyZone from './components/EnemyZone';
 
 const App = () => {
   return (
