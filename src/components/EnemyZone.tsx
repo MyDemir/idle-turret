@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './EnemyZone.css'; // CSS düzenlemeleri
+import './EnemyZone.css';
 
 // Düşman Tipi
 type Enemy = {
@@ -13,49 +13,51 @@ const EnemyZone = () => {
   const [enemies, setEnemies] = useState<Enemy[]>([]);
   const [wave, setWave] = useState(1); // Dalga numarası
 
-  const gridWidth = 7; // Grid sütun sayısı
-  const gridHeight = 10; // Grid satır sayısı
-
-  useEffect(() => {
-    // Dalga sistemi için bir zamanlayıcı ayarla
-    const waveInterval = setInterval(() => {
-      setWave((prevWave) => prevWave + 1); // Dalga numarasını artır
-    }, 10000); // Her 10 saniyede bir dalga
-
-    return () => clearInterval(waveInterval); // Temizleme
-  }, []);
-
-  useEffect(() => {
-    // Her dalga için düşmanları yarat
-    const newEnemies = Array.from({ length: wave * 3 }, (_, index) => ({
+  const spawnEnemies = () => {
+    const screenWidth = window.innerWidth; // Ekran genişliği
+    const newEnemies = Array.from({ length: wave * 5 }, (_, index) => ({
       id: index,
       health: 100 + wave * 10, // Dalga numarasına göre can artışı
-      position: {
-        x: Math.floor(Math.random() * gridWidth), // Rastgele sütun
-        y: 0, // Yukarıdan başlar
+      position: { 
+        x: Math.random() * screenWidth, // Ekranın rastgele bir noktasında doğar
+        y: 0 // Yukarıdan başlar
       },
       status: 'alive',
     }));
     setEnemies(newEnemies);
-  }, [wave]);
+  };
 
   useEffect(() => {
-    // Hareket Mekanizması
-    const movementInterval = setInterval(() => {
-      setEnemies((prev) =>
-        prev.map((enemy) =>
-          enemy.status === 'alive' && enemy.position.y < gridHeight - 1
-            ? {
-                ...enemy,
-                position: { ...enemy.position, y: enemy.position.y + 1 }, // Aşağı hareket
-              }
-            : enemy
-        )
-      );
-    }, 1000); // Her saniyede bir hareket
+    // İlk dalgayı başlat
+    spawnEnemies();
 
-    return () => clearInterval(movementInterval); // Temizleme
-  }, [enemies]);
+    // Dalga döngüsü
+    const waveInterval = setInterval(() => {
+      setWave((prevWave) => prevWave + 1); // Dalga numarasını artır
+      spawnEnemies(); // Yeni dalga düşmanlarını yarat
+    }, 10000); // Her 10 saniyede bir yeni dalga
+
+    // Düşman hareketi
+    const moveInterval = setInterval(() => {
+      setEnemies((prevEnemies) =>
+        prevEnemies
+          .map((enemy) =>
+            enemy.status === 'alive'
+              ? {
+                  ...enemy,
+                  position: { ...enemy.position, y: enemy.position.y + 5 } // Kulelere doğru hareket
+                }
+              : enemy
+          )
+          .filter((enemy) => enemy.position.y < window.innerHeight) // Ekranı terk edenleri temizle
+      );
+    }, 50); // Daha akıcı bir hareket için düşük süre
+
+    return () => {
+      clearInterval(waveInterval);
+      clearInterval(moveInterval);
+    };
+  }, [wave]);
 
   return (
     <div className="enemy-zone">
@@ -64,9 +66,8 @@ const EnemyZone = () => {
           key={enemy.id}
           className={`enemy ${enemy.status}`}
           style={{
-            transform: `translate(${enemy.position.x * 50}px, ${
-              enemy.position.y * 50
-            }px)`,
+            left: `${enemy.position.x}px`, // Dinamik x pozisyonu
+            top: `${enemy.position.y}px`, // Dinamik y pozisyonu
           }}
         >
           <div className="enemy-health">{enemy.health}</div>
