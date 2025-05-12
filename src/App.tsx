@@ -1,18 +1,18 @@
 import './App.css';
 import { useState } from 'react';
-import EnemyZone from './components/EnemyZone'; // EnemyZone bileşenini ekliyoruz
-
+import EnemyZone from './components/EnemyZone'; 
+// EnemyZone bileşenini ekliyoruz
 const App = () => {
-  const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀']; // İlk 7 için savaşçı emojiler
-  const [wave, setWave] = useState(1); // Dinamik dalga sayısı
+  const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀'];
+  const [wave, setWave] = useState(1);
+  const [health, setHealth] = useState(100);
 
   return (
     <div className="app">
-      {/* HUD Alanı */}
       <div className="hud">
         <div className="hud-item">
           <span className="hud-icon">❤️</span>
-          <span>Can: 100</span>
+          <span>Can: {health}</span>
         </div>
         <div className="hud-item">
           <span className="hud-icon">🪙</span>
@@ -20,14 +20,12 @@ const App = () => {
         </div>
         <div className="hud-item">
           <span className="hud-icon">🌊</span>
-          <span>Dalga: {wave}</span> {/* Dalga sayısı dinamik olarak gösteriliyor */}
+          <span>Dalga: {wave}</span>
         </div>
       </div>
 
-      {/* Düşman Alanı */}
-      <EnemyZone updateWave={setWave} /> {/* Dalga güncellemesi için prop ekledik */}
+      <EnemyZone updateWave={setWave} updateHealth={setHealth} />
 
-      {/* Kule Alanı */}
       <div className="turret-zone">
         {warriors.map((warrior, index) => (
           <div key={index} className="turret-cell front-row">
@@ -41,5 +39,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
