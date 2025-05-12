@@ -13,8 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vw; /* Ekran genişliğini tam kapla */
-  overflow: hidden; /* Taşmaları önle */
+  width: 100vw;
 }
 
 /* HUD Alanı */
@@ -23,7 +22,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 5vh; /* Küçük boyut */
+  height: 5vh;
   border-bottom: 2px solid #444;
   box-sizing: border-box;
 }
@@ -35,7 +34,7 @@ body {
 }
 
 .hud-icon {
-  font-size: 1.2rem; /* Emoji boyutlarına uygun */
+  font-size: 1.2rem;
   color: #ffcc00;
 }
 
@@ -47,7 +46,6 @@ body {
   align-items: center;
   background-color: #202040;
   border-bottom: 2px solid #555;
-  box-sizing: border-box;
 }
 
 /* Kule Alanı */
@@ -55,17 +53,16 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* İlk sıra 7 sütun */
   grid-template-rows: repeat(3, 1fr);   /* 3 satır */
-  gap: 8px;
+  gap: 5px; /* Küçük boşluklar */
   background-color: #111122;
-  height: 25%; /* Sabit yükseklik */
-  padding: 0 1rem;
-  box-sizing: border-box;
-  justify-content: center; /* Ortaya hizala */
+  height: 25%;
+  padding: 0 1rem; /* Yan boşlukları azalt */
+  justify-content: center;
 }
 
 .turret-cell {
-  width: 100%; /* Hücre genişliğini sütuna göre ayarla */
-  aspect-ratio: 1; /* Kare hücreler */
+  width: 100%;
+  aspect-ratio: 1;
   background-color: #2a2a50;
   border: 2px dashed #555;
   display: flex;
@@ -77,22 +74,20 @@ body {
 
 /* İlk 7 Kutu: Ön Planda */
 .front-row {
-  background-color: #3b3b70; /* Daha parlak renk */
-  border: 2px solid #fff; /* Daha belirgin kenarlık */
-  z-index: 1;
+  background-color: #3b3b70;
+  border: 2px solid #fff;
 }
 
 .warrior {
-  font-size: 1.5rem; /* Savaşçı emojiler */
+  font-size: 1.5rem;
 }
 
 /* Geriye Kalan 14 Kutu: Küçük ve Arka Planda */
 .back-row {
-  opacity: 0.6; /* Daha az dikkat çeksin */
-  background-color: #1a1a30; /* Daha koyu renk */
+  background-color: #1a1a30;
   border: 1px dashed #444;
-  transform: scale(0.8); /* Küçült */
-  z-index: 0;
+  transform: scale(0.8); /* Küçük göster */
+  opacity: 0.6;
 }
 
 .turret-cell:hover {
@@ -103,7 +98,7 @@ body {
 @media (max-width: 768px) {
   .hud {
     flex-direction: column;
-    height: auto; /* Yüksekliği içeriğe göre ayarla */
+    height: auto;
     padding: 0.5rem;
   }
 
@@ -112,18 +107,6 @@ body {
   }
 
   .turret-zone {
-    gap: 4px; /* Daha küçük boşluklar */
-  }
-
-  .front-row {
-    background-color: #5050a0;
-  }
-
-  .back-row {
-    opacity: 0.7;
-  }
-
-  .turret-cell {
-    border: 1px dashed #555;
+    gap: 3px; /* Daha küçük boşluklar */
   }
 }
