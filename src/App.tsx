@@ -1,8 +1,11 @@
 import './App.css';
+import { useState } from 'react';
 import EnemyZone from './components/EnemyZone'; // EnemyZone bileşenini ekliyoruz
 
 const App = () => {
   const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀']; // İlk 7 için savaşçı emojiler
+  const [wave, setWave] = useState(1); // Dinamik dalga sayısı
+
   return (
     <div className="app">
       {/* HUD Alanı */}
@@ -17,12 +20,12 @@ const App = () => {
         </div>
         <div className="hud-item">
           <span className="hud-icon">🌊</span>
-          <span>Dalga: 1</span>
+          <span>Dalga: {wave}</span> {/* Dalga sayısı dinamik olarak gösteriliyor */}
         </div>
       </div>
 
       {/* Düşman Alanı */}
-      <EnemyZone /> {/* Dinamik düşman alanı burada çağrılıyor */}
+      <EnemyZone updateWave={setWave} /> {/* Dalga güncellemesi için prop ekledik */}
 
       {/* Kule Alanı */}
       <div className="turret-zone">
