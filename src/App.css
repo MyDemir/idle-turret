@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  position: relative;
 }
 
 /* HUD Alanı */
@@ -56,9 +57,11 @@ body {
   background-color: #111122;
   height: 25%;
   padding: 0 10px;
-  justify-content: center; /* Ögeleri ortala */
-  max-width: 1200px; /* Büyük ekranlarda genişliği sınırlı tut */
-  margin: 0 auto; /* Ortala */
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .turret-cell {
@@ -93,13 +96,6 @@ body {
 }
 
 /* Responsive Düzenleme */
-@media (min-width: 1200px) {
-  .turret-zone {
-    grid-template-columns: repeat(7, 1fr); /* Büyük ekranlar için sabit sütun genişliği */
-    gap: 10px; /* Daha fazla boşluk */
-  }
-}
-
 @media (max-width: 768px) {
   .hud {
     flex-direction: column;
@@ -114,5 +110,6 @@ body {
   .turret-zone {
     grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Daha küçük sütunlar */
     gap: 3px;
+    height: 20%; /* Daha küçük kule alanı */
   }
-    }
+}
