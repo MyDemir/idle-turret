@@ -1,10 +1,9 @@
 .enemy-zone {
   position: relative;
-  width: 350px; /* Grid genişliği (7 sütun * 50px) */
-  height: 500px; /* Grid yüksekliği (10 satır * 50px) */
-  overflow: hidden; /* Alan dışına çıkan düşmanlar gizlenecek */
-  background-color: #111;
-  border: 2px solid #333;
+  width: 100%; /* Tüm genişlik */
+  height: 100vh; /* Tam ekran yüksekliği */
+  overflow: hidden; /* Alan dışına çıkan düşmanları gizle */
+  background-color: #111; /* Arka plan */
 }
 
 .enemy {
@@ -19,7 +18,7 @@
   color: white;
   font-size: 14px;
   font-weight: bold;
-  transition: transform 0.5s linear; /* Hareket animasyonu */
+  transition: top 0.05s linear, left 0.05s linear; /* Akıcı hareket */
 }
 
 .enemy-health {
