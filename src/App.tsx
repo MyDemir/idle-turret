@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EnemyZone from './components/EnemyZone';
 import TurretZone from './components/TurretZone';
 
@@ -7,7 +7,15 @@ const App = () => {
   const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀'];
   const [wave, setWave] = useState(1);
   const [health, setHealth] = useState(100);
-  const [enemies, setEnemies] = useState<any[]>([]); // Düşmanların durumu
+  const [enemies, setEnemies] = useState<any[]>([]);
+
+  // Can sıfıra düştüğünde oyun sonlanır
+  useEffect(() => {
+    if (health <= 0) {
+      alert("Oyun Bitti!"); // Geçici oyun sonu ekranı
+      // Yeniden başlatma için bir buton gösterebilirsiniz.
+    }
+  }, [health]);
 
   return (
     <div className="app">
@@ -17,7 +25,7 @@ const App = () => {
           <span>Can: {health}</span>
         </div>
         <div className="hud-item">
-          <span className="hud-icon">🪙</span>
+          <span className="hud-icon">💰</span>
           <span>Altın: 500</span>
         </div>
         <div className="hud-item">
@@ -27,7 +35,6 @@ const App = () => {
       </div>
 
       <EnemyZone updateWave={setWave} updateHealth={setHealth} enemies={enemies} setEnemies={setEnemies} />
-      <TurretZone enemies={enemies} setEnemies={setEnemies} />
 
       <div className="turret-zone">
         {warriors.map((warrior, index) => (
