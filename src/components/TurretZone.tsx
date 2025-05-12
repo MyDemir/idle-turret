@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './TurretZone.css'; // Yeni stil dosyasını import edin
 
 const TurretZone = ({ enemies, setEnemies }: { enemies: any[]; setEnemies: (enemies: any[]) => void }) => {
   const columns = 7;
@@ -25,7 +26,7 @@ const TurretZone = ({ enemies, setEnemies }: { enemies: any[]; setEnemies: (enem
       {Array.from({ length: columns * rows }).map((_, index) => (
         <div
           key={index}
-          className="w-12 h-12 border border-white flex items-center justify-center bg-gray-800 hover:bg-gray-700"
+          className="turret-cell"
         >
           {/* Kule buraya yerleştirilecek */}
         </div>
