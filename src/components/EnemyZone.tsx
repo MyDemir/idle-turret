@@ -14,6 +14,7 @@ const EnemyZone = ({ updateWave }: { updateWave: (wave: number) => void }) => {
   const [enemies, setEnemies] = useState<Enemy[]>([]);
   const [wave, setWave] = useState(1); // Dalga numarası
 
+  // Yeni düşmanları yarat
   const spawnEnemies = () => {
     const screenWidth = window.innerWidth; // Ekran genişliği
     const turretZoneHeight = 100; // Kule alanının yüksekliği
