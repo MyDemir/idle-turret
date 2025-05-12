@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './EnemyZone.css'; // CSS dosyasıyla düşmanların hareketini görselleştirmek için
+import './EnemyZone.css'; // CSS düzenlemeleri
 
 // Düşman Tipi
 type Enemy = {
@@ -11,25 +11,32 @@ type Enemy = {
 
 const EnemyZone = () => {
   const [enemies, setEnemies] = useState<Enemy[]>([]);
-  const columns = 7; // Grid sütun sayısı
-  const rows = 3; // Grid satır sayısı
 
-  // Yeni düşmanlar oluştur
-  const spawnEnemies = () => {
+  useEffect(() => {
+    // Yeni düşmanları başlat
     const newEnemies = Array.from({ length: 5 }, (_, index) => ({
       id: index,
-      health: 100, // Varsayılan can
-      position: {
-        x: Math.floor(Math.random() * columns),
-        y: Math.floor(Math.random() * rows),
-      },
+      health: 100,
+      position: { x: Math.floor(Math.random() * 7), y: 0 }, // İlk olarak yukarıda başlar
       status: 'alive',
     }));
     setEnemies(newEnemies);
-  };
 
-  useEffect(() => {
-    spawnEnemies();
+    // Hareket Mekanizması
+    const interval = setInterval(() => {
+      setEnemies((prev) =>
+        prev.map((enemy) =>
+          enemy.status === 'alive'
+            ? {
+                ...enemy,
+                position: { ...enemy.position, y: enemy.position.y + 1 }, // Aşağıya hareket
+              }
+            : enemy
+        )
+      );
+    }, 1000); // Her 1 saniyede bir hareket
+
+    return () => clearInterval(interval); // Temizleme
   }, []);
 
   return (
@@ -39,14 +46,12 @@ const EnemyZone = () => {
           key={enemy.id}
           className={`enemy ${enemy.status}`}
           style={{
-            transform: `translate(${enemy.position.x * 60}px, ${
-              enemy.position.y * 60
+            transform: `translate(${enemy.position.x * 50}px, ${
+              enemy.position.y * 50
             }px)`,
           }}
         >
-          <div className="enemy-health" title={`Health: ${enemy.health}`}>
-            {enemy.health}
-          </div>
+          <div className="enemy-health">{enemy.health}</div>
         </div>
       ))}
     </div>
