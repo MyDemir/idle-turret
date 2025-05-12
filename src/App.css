@@ -51,13 +51,14 @@ body {
 /* Kule Alanı */
 .turret-zone {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* İlk sıra 7 sütun */
-  grid-template-rows: repeat(3, 1fr);   /* 3 satır */
-  gap: 5px; /* Küçük boşluklar */
+  grid-template-columns: repeat(7, 1fr); /* İlk sıra için 7 sütun */
+  grid-auto-rows: 1fr; /* Satır yüksekliği otomatik */
+  gap: 5px;
   background-color: #111122;
   height: 25%;
-  padding: 0 1rem; /* Yan boşlukları azalt */
-  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  justify-items: center; /* Ögeleri ortala */
 }
 
 .turret-cell {
@@ -69,10 +70,8 @@ body {
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
-  box-sizing: border-box;
 }
 
-/* İlk 7 Kutu: Ön Planda */
 .front-row {
   background-color: #3b3b70;
   border: 2px solid #fff;
@@ -82,11 +81,10 @@ body {
   font-size: 1.5rem;
 }
 
-/* Geriye Kalan 14 Kutu: Küçük ve Arka Planda */
 .back-row {
   background-color: #1a1a30;
   border: 1px dashed #444;
-  transform: scale(0.8); /* Küçük göster */
+  transform: scale(0.8);
   opacity: 0.6;
 }
 
@@ -107,6 +105,6 @@ body {
   }
 
   .turret-zone {
-    gap: 3px; /* Daha küçük boşluklar */
+    gap: 3px;
   }
 }
