@@ -1,9 +1,9 @@
 .enemy-zone {
   position: relative;
-  width: 100%; /* Tüm genişlik */
-  height: 100vh; /* Tam ekran yüksekliği */
-  overflow: hidden; /* Alan dışına çıkan düşmanları gizle */
-  background-color: #111; /* Arka plan */
+  width: 100%;
+  height: 75%; /* TurretZone ile uyumlu */
+  overflow: hidden;
+  background-color: #111;
 }
 
 .enemy {
