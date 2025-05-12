@@ -27,7 +27,10 @@ const App = () => {
       {/* Kule Alanı */}
       <div className="turret-zone">
         {Array.from({ length: 21 }).map((_, index) => (
-          <div key={index} className="turret-cell">
+          <div
+            key={index}
+            className={`turret-cell ${index < 7 ? 'front-row' : 'back-row'}`}
+          >
             {/* Kule veya boş alan */}
           </div>
         ))}
