@@ -1,20 +1,27 @@
 import './App.css';
-import HUD from './components/HUD';
-import TurretZone from './components/TurretZone';
-import EnemyZone from './components/EnemyZone';
 
 const App = () => {
   return (
-    <div className="app relative w-full h-screen">
-      <HUD health={100} gold={500} wave={1} />
-      <main className="game-area p-4">
-        <div className="turret-zone border border-white p-2 mb-4">
-          <TurretZone />
+    <div className="app">
+      {/* HUD */}
+      <div className="hud">
+        <div>Can: 100</div>
+        <div>Altın: 500</div>
+        <div>Dalga: 1</div>
+      </div>
+
+      {/* Oyun Alanı */}
+      <div className="game-area">
+        {/* Kule Alanı */}
+        <div className="turret-zone">
+          <p>Kule Alanı</p>
         </div>
-        <div className="enemy-zone border border-red-500 p-2">
-          {/* EnemyZone bileşeni buraya eklenecek */}
+
+        {/* Düşman Alanı */}
+        <div className="enemy-zone">
+          <p>Düşman Alanı</p>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
