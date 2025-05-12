@@ -1,8 +1,9 @@
+/* Genel Ayarlar */
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
   background: radial-gradient(circle, #1a1a2e, #0f0f1c);
-  color: #f8f8f8;
+  color: white;
 }
 
 .app {
@@ -11,37 +12,48 @@ body {
   height: 100vh;
 }
 
+/* HUD Alanı */
 .hud {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #444;
+  color: #f8f8f8;
+  font-size: 1.2rem;
 }
 
-.stats span {
-  margin-left: 1rem;
-}
-
+/* Oyun Alanı */
 .game-area {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: repeating-linear-gradient(
+  display: grid;
+  grid-template-rows: 3fr 2fr;
+  grid-gap: 1rem;
+  padding: 1rem;
+  background: repeating-linear-gradient(
     45deg,
     #0f0f1c,
     #0f0f1c 10px,
     #111122 10px,
     #111122 20px
   );
-  padding-top: 80px; /* HUD alanı için boşluk */
 }
 
+/* Turret ve Enemy Alanları */
 .turret-zone,
 .enemy-zone {
   border: 2px dashed #555;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 1rem;
+  background-color: #202040;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.turret-zone:hover,
+.enemy-zone:hover {
+  background-color: #2a2a50;
+  transform: scale(1.02);
 }
