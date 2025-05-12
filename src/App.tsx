@@ -1,11 +1,13 @@
 import './App.css';
 import { useState } from 'react';
-import EnemyZone from './components/EnemyZone'; 
-// EnemyZone bileşenini ekliyoruz
+import EnemyZone from './components/EnemyZone';
+import TurretZone from './components/TurretZone';
+
 const App = () => {
   const warriors = ['🚀', '🛡️', '⚔️', '🎯', '🛡️', '⚔️', '🚀'];
   const [wave, setWave] = useState(1);
   const [health, setHealth] = useState(100);
+  const [enemies, setEnemies] = useState<any[]>([]); // Düşmanların durumu
 
   return (
     <div className="app">
@@ -24,7 +26,8 @@ const App = () => {
         </div>
       </div>
 
-      <EnemyZone updateWave={setWave} updateHealth={setHealth} />
+      <EnemyZone updateWave={setWave} updateHealth={setHealth} enemies={enemies} setEnemies={setEnemies} />
+      <TurretZone enemies={enemies} setEnemies={setEnemies} />
 
       <div className="turret-zone">
         {warriors.map((warrior, index) => (
@@ -39,3 +42,5 @@ const App = () => {
     </div>
   );
 };
+
+export default App;
