@@ -34,7 +34,6 @@ const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWa
           y: window.innerHeight - turretZoneHeight,
         },
         color: enemyType.color,
-        speed: enemyType.speed,
         status: 'alive',
       };
     });
