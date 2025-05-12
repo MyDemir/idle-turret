@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
+# Idle Turret Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu proje, bir "Idle Turret" oyunudur. Oyuncular dalgalar halinde gelen düşmanları savunmak için kuleler yerleştirir ve stratejik kararlar alır. Oyun, React ve TypeScript kullanılarak geliştirilmiştir ve hızlı geliştirme için Vite kullanılmıştır.
 
-Currently, two official plugins are available:
+## Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React + TypeScript**: Kullanıcı arayüzü React ile oluşturulmuş olup, TypeScript sayesinde güvenli ve tipli bir geliştirme deneyimi sağlar.
+- **Düşman Dalga Yönetimi**: Farklı türde düşmanlarla her dalga zorlaşır.
+- **Kule Saldırı Mekanizması**: Yerleştirilen kuleler düşmanlara otomatik olarak saldırır.
+- **Sağlık ve Kaynak Yönetimi**: Can, altın ve dalga bilgisi HUD üzerinden takip edilebilir.
 
-## Expanding the ESLint configuration
+## Kullanılan Teknolojiler
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React**: Bileşen tabanlı kullanıcı arayüzü geliştirme.
+- **TypeScript**: Tip güvenliği ve daha sağlam kod yazımı.
+- **Vite**: Hızlı ve verimli geliştirme ortamı.
+- **CSS**: Görsel düzenleme ve stillendirme.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Kurulum
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip edin:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Depoyu Klonlayın**:
+   ```bash
+   git clone https://github.com/MyDemir/idle-turret.git
+   cd idle-turret
+   ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+2. **Bağımlılıkları Yükleyin**:
+   ```bash
+   npm install
+   ```
+
+3. **Geliştirme Sunucusunu Başlatın**:
+   ```bash
+   npm run dev
+   ```
+
+4. Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresine giderek projeyi görüntüleyin.
+
+## Proje Yapısı
+
+- **`src/App.tsx`**: Uygulamanın ana bileşeni. HUD, EnemyZone ve TurretZone bileşenlerini içerir.
+- **`src/components/EnemyZone.tsx`**: Düşmanların hareketini ve dalga yönetimini kontrol eder.
+- **`src/components/HUD.tsx`**: Can, altın ve dalga bilgilerini görüntüler.
+- **`src/components/TurretZone.tsx`**: Kulelerin düşmanlara saldırdığı alanı yönetir.
+
+## Geliştirme Önerileri
+
+- **Testler**: Jest veya React Testing Library ile testler eklenebilir.
+- **Sürekli Entegrasyon**: GitHub Actions gibi araçlarla CI/CD süreçleri kurulabilir.
+- **Yeni Özellikler**:
+  - Daha fazla düşman türü eklenebilir.
+  - Kulelerin yükseltilmesi veya farklı kule türleri eklenebilir.
+  - Oyun içi mağaza gibi yeni özelliklerle oyun zenginleştirilebilir.
+
+## Katkıda Bulunma
+
+Katkıda bulunmak isterseniz lütfen bir "Issue" açın veya bir "Pull Request" gönderin. Tüm katkılar memnuniyetle karşılanır!
+
+## Lisans
+
+Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICENSE](./LICENSE) dosyasına bakabilirsiniz.
+
+## İletişim
+
+Herhangi bir sorunuz veya öneriniz varsa, lütfen [MyDemir](https://github.com/MyDemir) ile iletişime geçin.
