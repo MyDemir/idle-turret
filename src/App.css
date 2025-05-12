@@ -12,7 +12,9 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
+  width: 100vw; /* Ekran genişliğini tam kapla */
+  overflow: hidden; /* Taşmaları önle */
 }
 
 /* HUD Alanı */
@@ -22,8 +24,9 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 10%; /* Yükseklik oranı */
+  height: 10%; /* Yükseklik sabitlendi */
   border-bottom: 2px solid #444;
+  box-sizing: border-box; /* Padding dahil genişlik hesapla */
 }
 
 .hud-item {
@@ -44,30 +47,32 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #202040;
-  height: 60%; /* Yükseklik oranı */
   border-bottom: 2px solid #555;
+  box-sizing: border-box; /* Padding dahil genişlik hesapla */
 }
 
 /* Kule Alanı */
 .turret-zone {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 8px;
-  padding: 1rem;
+  grid-template-columns: repeat(7, 1fr); /* Her sütun eşit genişlikte */
+  grid-template-rows: repeat(3, 1fr);   /* Her satır eşit yükseklikte */
+  gap: 5px;
   background-color: #111122;
-  height: 30%; /* Yükseklik oranı */
+  height: 20%; /* Sabit yükseklik */
+  padding: 0; /* Ekstra boşluk kaldırıldı */
+  box-sizing: border-box; /* Padding dahil genişlik hesapla */
 }
 
 .turret-cell {
-  width: 100%;
-  aspect-ratio: 1;
+  width: 100%; /* Hücre genişliğini sütuna göre ayarla */
+  aspect-ratio: 1; /* Kare hücreler */
   background-color: #2a2a50;
   border: 2px dashed #555;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Padding dahil genişlik hesapla */
 }
 
 .turret-cell:hover {
@@ -80,12 +85,8 @@ body {
     flex-direction: column;
   }
 
-  .enemy-zone {
-    height: 50%;
-  }
-
   .turret-zone {
-    gap: 4px;
+    gap: 3px; /* Daha küçük boşluklar */
   }
 
   .turret-cell {
