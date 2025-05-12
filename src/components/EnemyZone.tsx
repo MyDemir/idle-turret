@@ -1,5 +1,17 @@
-const EnemyZone = ({ updateWave, updateHealth }: { updateWave: (wave: number) => void, updateHealth: (health: number) => void }) => {
-  const [enemies, setEnemies] = useState<Enemy[]>([]);
+import React, { useEffect, useState } from 'react';
+import './EnemyZone.css';
+
+const enemyTypes = [
+  { type: 'basic', color: 'red', health: 100, speed: 2 },
+  { type: 'fast', color: 'blue', health: 70, speed: 4 },
+  { type: 'tank', color: 'green', health: 200, speed: 1 },
+  { type: 'sniper', color: 'purple', health: 120, speed: 2.5 },
+  { type: 'explosive', color: 'orange', health: 80, speed: 2 },
+  { type: 'healer', color: 'pink', health: 150, speed: 1.5 },
+  { type: 'boss', color: 'black', health: 500, speed: 1 },
+];
+
+const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWave: (wave: number) => void; updateHealth: (health: number) => void; enemies: any[]; setEnemies: (enemies: any[]) => void }) => {
   const [wave, setWave] = useState(1);
 
   const spawnEnemies = () => {
@@ -74,7 +86,7 @@ const EnemyZone = ({ updateWave, updateHealth }: { updateWave: (wave: number) =>
     }, 50);
 
     return () => clearInterval(moveInterval);
-  }, [enemies]);
+  }, []);
 
   useEffect(() => {
     checkEnemiesStatus();
@@ -98,3 +110,5 @@ const EnemyZone = ({ updateWave, updateHealth }: { updateWave: (wave: number) =>
     </div>
   );
 };
+
+export default EnemyZone;
