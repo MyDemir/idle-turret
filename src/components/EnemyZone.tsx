@@ -25,7 +25,7 @@ const EnemyZone = ({ updateWave }: { updateWave: (wave: number) => void }) => {
       health: 100 + wave * 10, // Dalga numarasına göre can artışı
       position: {
         x: Math.random() * screenWidth, // Ekranın rastgele bir noktasında doğar
-        y: 0, // Yukarıdan başlar
+        y: Math.random() * (window.innerHeight / 2), // Yukarıdan rastgele bir noktada başlar
       },
       target: {
         x: Math.random() * turretZoneWidth, // Kule alanındaki rastgele x noktası
