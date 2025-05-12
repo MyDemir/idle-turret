@@ -5,9 +5,18 @@ const App = () => {
     <div className="app">
       {/* HUD Alanı */}
       <div className="hud">
-        <div>Can: 100</div>
-        <div>Altın: 500</div>
-        <div>Dalga: 1</div>
+        <div className="hud-item">
+          <span className="hud-icon">❤️</span>
+          <span>Can: 100</span>
+        </div>
+        <div className="hud-item">
+          <span className="hud-icon">🪙</span>
+          <span>Altın: 500</span>
+        </div>
+        <div className="hud-item">
+          <span className="hud-icon">🌊</span>
+          <span>Dalga: 1</span>
+        </div>
       </div>
 
       {/* Düşman Alanı */}
