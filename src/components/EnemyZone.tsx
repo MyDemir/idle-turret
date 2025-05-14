@@ -15,10 +15,6 @@ const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWa
   const [wave, setWave] = useState(1);
 
   const spawnEnemies = () => {
-    const screenWidth = window.innerWidth;
-    const turretZoneHeight = 100;
-    const turretZoneWidth = screenWidth;
-
     const newEnemies = Array.from({ length: wave * 5 }, (_, index) => {
       const enemyType = enemyTypes[Math.min(wave - 1, enemyTypes.length - 1)];
       return {
@@ -26,16 +22,14 @@ const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWa
         type: enemyType.type,
         health: enemyType.health,
         position: {
-          x: Math.random() * screenWidth,
+          x: Math.random() * window.innerWidth,
           y: Math.random() * (window.innerHeight / 2),
         },
         target: {
-          x: Math.random() * turretZoneWidth,
-          y: window.innerHeight - turretZoneHeight,
+          x: Math.random() * window.innerWidth,
+          y: window.innerHeight - 100,
         },
-        color: enemyType.color, // Eklenen özellik
-        speed: enemyType.speed, // Eklenen özellik
-        status: 'alive', // Eklenen özellik
+        status: 'alive',
       };
     });
 
@@ -50,10 +44,10 @@ const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWa
     if (allDeadOrReached) {
       setWave((prevWave) => {
         const nextWave = prevWave + 1;
-        updateWave(nextWave);
-        spawnEnemies();
+        updateWave(nextWave); // Dalga sayısını üst bileşene iletir
         return nextWave;
       });
+      spawnEnemies();
     }
   };
 
@@ -69,8 +63,8 @@ const EnemyZone = ({ updateWave, updateHealth, enemies, setEnemies }: { updateWa
           const dy = enemy.target.y - enemy.position.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 5 && enemy.status !== 'dead') {
-            updateHealth((prevHealth) => Math.max(prevHealth - 10, 0)); // Can azaltma
+          if (distance < 5) {
+            updateHealth((prevHealth) => Math.max(prevHealth - 10, 0)); // Canı azalt
             return { ...enemy, status: 'dead' };
           }
 
