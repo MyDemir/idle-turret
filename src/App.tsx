@@ -10,15 +10,18 @@ const App = () => {
   const [enemies, setEnemies] = useState<any[]>([]);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  // Can sıfıra düştüğünde oyun sonlanır
   // Can 0'a düştüğünde oyunu bitir
   useEffect(() => {
+    if (health <= 0) {
     if (health <= 0 && !isGameOver) {
       setIsGameOver(true);
       alert("Oyun Bitti!"); // Geçici oyun sonu ekranı
+      // Yeniden başlatma için bir buton gösterebilirsiniz.
       // Yeniden başlatma özelliği eklenebilir.
     }
+  }, [health]);
   }, [health, isGameOver]);
-
   const resetGame = () => {
     setHealth(100);
     setWave(1);
@@ -43,6 +46,17 @@ const App = () => {
         </div>
       </div>
 
+      <EnemyZone updateWave={setWave} updateHealth={setHealth} enemies={enemies} setEnemies={setEnemies} />
+      <div className="turret-zone">
+        {warriors.map((warrior, index) => (
+          <div key={index} className="turret-cell front-row">
+            <span className="warrior">{warrior}</span>
+          </div>
+        ))}
+        {Array.from({ length: 14 }).map((_, index) => (
+          <div key={index} className="turret-cell back-row"></div>
+        ))}
+      </div>
       {!isGameOver ? (
         <>
           <EnemyZone updateWave={setWave} updateHealth={setHealth} enemies={enemies} setEnemies={setEnemies} />
