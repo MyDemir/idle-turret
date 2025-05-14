@@ -39,6 +39,16 @@ body {
   color: #ffcc00;
 }
 
+/* Düşman Alanı */
+.enemy-zone {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #202040;
+  border-bottom: 2px solid #555;
+}
+/* Kule Alanı */
 /* Turret Zone */
 .turret-zone {
   display: grid;
@@ -67,6 +77,10 @@ body {
 
 .front-row {
   background-color: #3b3b70;
+  border: 2px solid #fff;
+}
+.warrior {
+  font-size: 1.5rem;
 }
 
 .back-row {
